@@ -1,0 +1,348 @@
+$sprite-layout: horizontal
+$sprite-spacing: 20px  
+//@import "../img/sprites-lightbox/*.png"
+//@include all-sprites-sprites
+
+$sprite-lightbox: sprite-map("../img/sprites-lightbox/*.png")
+
+$color-fade: #000
+$color-notice: #df2500
+$color-wood: #dc291e
+$color-btn-text: #fff
+$color-scrollbar: #f39b55
+$color-scrollbar-hover: #db763d
+$color-icon-fadedeep: #595853
+$color-checkpoint: #f12f0a
+$color-form: #52504c
+$color-form-title-background: #e6dbcc
+$color-input-text-bottom-border: #e3d7c5
+$color-input-border: #d2c1a0
+$color-error: #db2115
+
+@mixin lightbox-btn($background-name)
+	+sprite-background($sprite-lightbox, $background-name)
+	display: inline-block
+	font-size: 16px
+	color: $color-btn-text
+	font-weight: bold
+	line-height: 2.3
+	/*padding: 0 28px*/
+	margin: 0px 0px 0px 10px
+	text-align: center
+	vertical-align: middle
+	white-space: nowrap
+	cursor: pointer
+
+.mCSB_inside > .mCSB_container
+	margin-right: 0px
+
+
+.mCS-red
+	.mCSB_dragger .mCSB_dragger_bar
+		width: 8px
+		background-color: $color-scrollbar
+		right: 4px\9
+	.mCSB_draggerContainer .mCSB_draggerRail
+		background: sprite($sprite-lightbox, "scroller-red-container")
+		width: 8px
+		height: 170px
+	.mCSB_scrollTools
+
+
+
+.lightbox
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	outline: 0 none
+	background-image: inline-image("../img/lightbox-fade.png")
+	background-repeat: repeat
+	z-index: 1040
+	.dialog
+		opacity: 1
+		width: 960px
+		height: 600px
+		background-image: url(../img/lightbox-bg.png)
+		margin: 100px auto 0px auto
+		position: relative
+		.close
+			+sprite-background($sprite-lightbox, "close")
+			position: absolute
+			right: 19px
+			top: 11px
+			cursor: pointer
+	.wrapper
+		padding: 35px 40px
+		margin-top: 34px
+		.container
+			height: 500px
+
+			.part.left
+				position: relative
+				left: 15px
+
+			.part
+				float: left
+				width: 50%
+				margin-top: 25px
+				&:after
+					clear: both
+				.hr
+					+sprite-background($sprite-lightbox, "hr")
+					border: 0px solid #fff
+					margin: 0px 0px 0px 45px
+				.change-notice
+					margin-left: 10px
+				.error
+					color: $color-error
+					font-size: 13px
+				.change-result
+					font-size: 18px
+					font-weight: bold
+					margin: 62px 0px 54px 0px
+					text-align: center
+					.result
+						p
+							margin-bottom: 5px
+						.coin
+							display: inline-block
+							position: relative
+							top: 9px
+							margin-right: 7px
+					.notice
+						margin-top: 35px
+						p
+							margin-bottom: 10px
+							color: $color-notice
+							font-size: 14px
+							
+				.share
+					padding: 27px 20px 36px 20px
+					text-align: center
+					.item
+						display: inline-block
+						margin-left: 32px
+						a
+							display: block
+							margin: 0 auto
+				.btns
+					margin: 19px 0px 0px 32px
+					text-align: center
+					.btn-122
+						+lightbox-btn("btn-122")
+
+				.btns.change
+					margin-top: 25px
+
+				.gift
+					.product
+						width: 390px
+						height: 390px
+						background: transparent url("../img/lightbox-gift-bg.png") no-repeat 100% center
+						div
+							text-align: center
+							img
+								position: relative
+								top: 20px
+								max-height: 353px
+								max-width: 353px
+					.wood
+						margin-top: 8px
+						width: 390px
+						height: 88px
+						background: transparent url("../img/lightbox-wood.png") no-repeat 100% center
+						div
+							padding: 15px
+							text-align: center
+							.icon
+								display: inline-block
+							.msg
+
+								color: $color-wood
+								font-size: 20px
+								position: relative
+								bottom: 0px
+								margin-left: 10px
+								span
+									font-size: 35px
+									font-weight: bold
+									position: inherit
+									top: 5px
+					.wood-fancy
+						position: relative
+						bottom: 8px
+						width: 391px
+						height: 95px
+						background: transparent url("../img/lightbox-wood-fancy.png") no-repeat 100% center
+						text-align: center
+						span
+							font-size: 22px
+							font-weight: bold
+							line-height: 97px
+							margin-left: 85px
+							letter-spacing: 2px
+				.title
+					p
+						font-size: 20px
+						font-weight: bold
+						color: $base-color-black
+						margin: 0px 0px 12px 46px
+
+				
+				.detail
+					padding: 5px 10px 5px 48px
+					font-size: 15px
+					line-height: 22px
+					max-height: 153px
+					overflow-y: none
+					.material
+						margin-top: 5px
+					.price
+						text-align: right
+						margin-right: 8px
+
+				.coin-record
+					padding: 5px 10px 5px 48px
+					font-size: 16px
+					font-weight: bold
+					line-height: 22px
+					.icon
+						display: inline-block
+						position: relative
+						top: 10px
+						margin-right: 8px
+					.checkpoint
+						margin-top: 10px
+						text-align: right
+						font-size: 14px
+						font-weight: normal
+						color: $color-checkpoint
+						a
+							color: inherit
+							text-decoration: underline
+							&:hover 
+								text-decoration: none
+				
+				.board
+					margin: 5px 0px 0px 43px
+					width: 387px
+					height: 228px
+					background: transparent url("../img/lightbox-board.png") no-repeat 100% center
+					.change-date
+						font-size: 14px
+						font-weight: bold
+						padding: 13px 0px 0px 17px	
+					.icons
+						margin-top: 7px
+						padding: 0px 10px 0px 13px
+						max-height: 174px
+						overflow-y: auto
+						
+
+						.icon
+							float: left
+							margin: 5px 5px 0px 0px
+							text-align: center
+							line-height: 60px
+							color: $color-icon-fadedeep
+							font-weight: bold
+						.icon.black-fade
+							+sprite-background($sprite-lightbox, "icon-black-fade")
+
+				.form-block
+					margin: 7px 0px 0px 43px
+					font-size: 18px
+					color: $color-form
+					.title
+						padding: 10px 12px
+						background-color: $color-form-title-background
+					form
+						width: 94%
+						margin: 0 auto
+						.input-group
+							
+							border-bottom: 1px solid $color-input-text-bottom-border
+							margin: 8px 0px 0px 0px
+							padding: 0px 0px 5px 0px
+							input[type="text"]
+								font-size: 16px
+								margin-left: 5px
+								border: none
+								background-color: transparent
+								width: 53%
+							.error
+								float: right
+								margin-top: 5px
+
+						.select-group
+							border: none
+							margin-top: 10px
+							input, select
+								font-size: 16px
+								height: 31px
+								line-height: 31px
+							input
+								padding-left: 10px
+								border: 1px solid $color-input-border
+
+								
+							select
+								padding-left: 7px
+								padding-bottom: 4px\9
+								background: none repeat scroll 0 0 transparent
+								-webkit-appearance: none
+								
+							.selects
+								display: inline-block
+								margin-left: 19px
+								width: 312px
+								&:after
+									clear: both
+
+								.style
+									border: 1px solid $color-input-border
+									background: url("../img/lightbox-select-dropdown.png") no-repeat  #fff
+									overflow: hidden	
+									float: left	
+									
+								
+								.city
+									background-position: 100px 50%
+									width: 125px
+									margin-right: 5px
+									select
+										width: 142px
+										border: none
+
+								.dist
+									background-position: 150px 50%
+									width: 178px
+									select
+										width: 195px
+										border: none
+							.address
+								margin-top: 10px
+								padding-left: 59px
+								input
+									width: 299px
+							.error
+								margin-top: 5px
+
+				.btn-change-block
+					text-align: right
+					margin-right: 12px
+					font-weight: bold
+					font-size: 16px
+					.btn
+						a
+							color: $base-color-white
+							text-align: center
+							line-height: 88px
+							display: inline-block
+	
+
+
+
+		

@@ -1,0 +1,28 @@
+{
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "bin": {
+		"gulp": "./bin/gulp.js"
+  	},
+    "dependencies": {
+        "gulp": "*",
+        "gulp-util": "*",
+        "gulp-watch": "*",
+        "gulp-filter": "*",
+        "browser-sync": "*",
+        "gulp-plumber": "*",
+        "gulp-compass": "*",
+        "gulp-concat": "*",
+        "gulp-uglify": "*",
+        "gulp-minify-css": "*",
+        "gulp-imagemin": "*",
+        "imagemin-pngcrush": "*",
+        "gulp-minify-html": "*",
+        "gulp-filesize": "*",
+        "gulp-dom-src": "*",
+        "gulp-cheerio": "*",
+        "gulp-clean": "*",
+        "path": "*"
+    }
+}

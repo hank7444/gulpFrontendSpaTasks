@@ -1,0 +1,393 @@
+@charset "UTF-8";
+@import url(reset.css);
+body {
+  font-family: "微軟正黑體", Arial, "新細明體";
+}
+
+#wrapper {
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* 將預設的focus虛線去除 */
+*:focus {
+  outline: none;
+}
+
+/* firefox 將select的虛線去除 */
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 black;
+}
+
+.validateInput {
+  position: absolute;
+  left: -9999px;
+}
+
+.mCSB_inside > .mCSB_container {
+  margin-right: 0px;
+}
+
+.mCS-red .mCSB_dragger .mCSB_dragger_bar {
+  width: 8px;
+  background-color: #f39b55;
+  right: 4px \9;
+}
+.mCS-red .mCSB_draggerContainer .mCSB_draggerRail {
+  background: url('../img/sprites-lightbox-s2d7d62bdd7.png') 0 -140px;
+  width: 8px;
+  height: 170px;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  outline: 0 none;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyQkZEMEJGQzIwOUMxMUU0QkRFRThEMEZBRjk4MDg5MCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyQkZEMEJGRDIwOUMxMUU0QkRFRThEMEZBRjk4MDg5MCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjJCRkQwQkZBMjA5QzExRTRCREVFOEQwRkFGOTgwODkwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjJCRkQwQkZCMjA5QzExRTRCREVFOEQwRkFGOTgwODkwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+BEmwQQAAAA9JREFUeNpiYGBg2AwQYAAAuAC01qHx9QAAAABJRU5ErkJggg==');
+  background-repeat: repeat;
+  z-index: 1040;
+}
+.lightbox .dialog {
+  opacity: 1;
+  width: 960px;
+  height: 600px;
+  background-image: url(../img/lightbox-bg.png);
+  margin: 100px auto 0px auto;
+  position: relative;
+}
+.lightbox .dialog .close {
+  background: url('../img/sprites-lightbox-s2d7d62bdd7.png') 0 -38px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 19px;
+  top: 11px;
+  cursor: pointer;
+}
+.lightbox .wrapper {
+  padding: 35px 40px;
+  margin-top: 34px;
+}
+.lightbox .wrapper .container {
+  height: 500px;
+}
+.lightbox .wrapper .container .part.left {
+  position: relative;
+  left: 15px;
+}
+.lightbox .wrapper .container .part {
+  float: left;
+  width: 50%;
+  margin-top: 25px;
+}
+.lightbox .wrapper .container .part:after {
+  clear: both;
+}
+.lightbox .wrapper .container .part .hr {
+  background: url('../img/sprites-lightbox-s2d7d62bdd7.png') 0 -68px;
+  width: 380px;
+  height: 12px;
+  border: 0px solid white;
+  margin: 0px 0px 0px 45px;
+}
+.lightbox .wrapper .container .part .change-notice {
+  margin-left: 10px;
+}
+.lightbox .wrapper .container .part .error {
+  color: #db2115;
+  font-size: 13px;
+}
+.lightbox .wrapper .container .part .change-result {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 62px 0px 54px 0px;
+  text-align: center;
+}
+.lightbox .wrapper .container .part .change-result .result p {
+  margin-bottom: 5px;
+}
+.lightbox .wrapper .container .part .change-result .result .coin {
+  display: inline-block;
+  position: relative;
+  top: 9px;
+  margin-right: 7px;
+}
+.lightbox .wrapper .container .part .change-result .notice {
+  margin-top: 35px;
+}
+.lightbox .wrapper .container .part .change-result .notice p {
+  margin-bottom: 10px;
+  color: #df2500;
+  font-size: 14px;
+}
+.lightbox .wrapper .container .part .share {
+  padding: 27px 20px 36px 20px;
+  text-align: center;
+}
+.lightbox .wrapper .container .part .share .item {
+  display: inline-block;
+  margin-left: 32px;
+}
+.lightbox .wrapper .container .part .share .item a {
+  display: block;
+  margin: 0 auto;
+}
+.lightbox .wrapper .container .part .btns {
+  margin: 19px 0px 0px 32px;
+  text-align: center;
+}
+.lightbox .wrapper .container .part .btns .btn-122 {
+  background: url('../img/sprites-lightbox-s2d7d62bdd7.png') 0 0;
+  width: 122px;
+  height: 38px;
+  display: inline-block;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  line-height: 2.3;
+  /*padding: 0 28px */
+  margin: 0px 0px 0px 10px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.lightbox .wrapper .container .part .btns.change {
+  margin-top: 25px;
+}
+.lightbox .wrapper .container .part .gift .product {
+  width: 390px;
+  height: 390px;
+  background: transparent url("../img/lightbox-gift-bg.png") no-repeat 100% center;
+}
+.lightbox .wrapper .container .part .gift .product div {
+  text-align: center;
+}
+.lightbox .wrapper .container .part .gift .product div img {
+  position: relative;
+  top: 20px;
+  max-height: 353px;
+  max-width: 353px;
+}
+.lightbox .wrapper .container .part .gift .wood {
+  margin-top: 8px;
+  width: 390px;
+  height: 88px;
+  background: transparent url("../img/lightbox-wood.png") no-repeat 100% center;
+}
+.lightbox .wrapper .container .part .gift .wood div {
+  padding: 15px;
+  text-align: center;
+}
+.lightbox .wrapper .container .part .gift .wood div .icon {
+  display: inline-block;
+}
+.lightbox .wrapper .container .part .gift .wood div .msg {
+  color: #dc291e;
+  font-size: 20px;
+  position: relative;
+  bottom: 0px;
+  margin-left: 10px;
+}
+.lightbox .wrapper .container .part .gift .wood div .msg span {
+  font-size: 35px;
+  font-weight: bold;
+  position: inherit;
+  top: 5px;
+}
+.lightbox .wrapper .container .part .gift .wood-fancy {
+  position: relative;
+  bottom: 8px;
+  width: 391px;
+  height: 95px;
+  background: transparent url("../img/lightbox-wood-fancy.png") no-repeat 100% center;
+  text-align: center;
+}
+.lightbox .wrapper .container .part .gift .wood-fancy span {
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 97px;
+  margin-left: 85px;
+  letter-spacing: 2px;
+}
+.lightbox .wrapper .container .part .title p {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin: 0px 0px 12px 46px;
+}
+.lightbox .wrapper .container .part .detail {
+  padding: 5px 10px 5px 48px;
+  font-size: 15px;
+  line-height: 22px;
+  max-height: 153px;
+  overflow-y: none;
+}
+.lightbox .wrapper .container .part .detail .material {
+  margin-top: 5px;
+}
+.lightbox .wrapper .container .part .detail .price {
+  text-align: right;
+  margin-right: 8px;
+}
+.lightbox .wrapper .container .part .coin-record {
+  padding: 5px 10px 5px 48px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 22px;
+}
+.lightbox .wrapper .container .part .coin-record .icon {
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  margin-right: 8px;
+}
+.lightbox .wrapper .container .part .coin-record .checkpoint {
+  margin-top: 10px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: normal;
+  color: #f12f0a;
+}
+.lightbox .wrapper .container .part .coin-record .checkpoint a {
+  color: inherit;
+  text-decoration: underline;
+}
+.lightbox .wrapper .container .part .coin-record .checkpoint a:hover {
+  text-decoration: none;
+}
+.lightbox .wrapper .container .part .board {
+  margin: 5px 0px 0px 43px;
+  width: 387px;
+  height: 228px;
+  background: transparent url("../img/lightbox-board.png") no-repeat 100% center;
+}
+.lightbox .wrapper .container .part .board .change-date {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 13px 0px 0px 17px;
+}
+.lightbox .wrapper .container .part .board .icons {
+  margin-top: 7px;
+  padding: 0px 10px 0px 13px;
+  max-height: 174px;
+  overflow-y: auto;
+}
+.lightbox .wrapper .container .part .board .icons .icon {
+  float: left;
+  margin: 5px 5px 0px 0px;
+  text-align: center;
+  line-height: 60px;
+  color: #595853;
+  font-weight: bold;
+}
+.lightbox .wrapper .container .part .board .icons .icon.black-fade {
+  background: url('../img/sprites-lightbox-s2d7d62bdd7.png') 0 -80px;
+  width: 60px;
+  height: 60px;
+}
+.lightbox .wrapper .container .part .form-block {
+  margin: 7px 0px 0px 43px;
+  font-size: 18px;
+  color: #52504c;
+}
+.lightbox .wrapper .container .part .form-block .title {
+  padding: 10px 12px;
+  background-color: #e6dbcc;
+}
+.lightbox .wrapper .container .part .form-block form {
+  width: 94%;
+  margin: 0 auto;
+}
+.lightbox .wrapper .container .part .form-block form .input-group {
+  border-bottom: 1px solid #e3d7c5;
+  margin: 8px 0px 0px 0px;
+  padding: 0px 0px 5px 0px;
+}
+.lightbox .wrapper .container .part .form-block form .input-group input[type="text"] {
+  font-size: 16px;
+  margin-left: 5px;
+  border: none;
+  background-color: transparent;
+  width: 53%;
+}
+.lightbox .wrapper .container .part .form-block form .input-group .error {
+  float: right;
+  margin-top: 5px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group {
+  border: none;
+  margin-top: 10px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group input, .lightbox .wrapper .container .part .form-block form .select-group select {
+  font-size: 16px;
+  height: 31px;
+  line-height: 31px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group input {
+  padding-left: 10px;
+  border: 1px solid #d2c1a0;
+}
+.lightbox .wrapper .container .part .form-block form .select-group select {
+  padding-left: 7px;
+  padding-bottom: 4px \9;
+  background: none repeat scroll 0 0 transparent;
+  -webkit-appearance: none;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .selects {
+  display: inline-block;
+  margin-left: 19px;
+  width: 312px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .selects:after {
+  clear: both;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .selects .style {
+  border: 1px solid #d2c1a0;
+  background: url("../img/lightbox-select-dropdown.png") no-repeat white;
+  overflow: hidden;
+  float: left;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .selects .city {
+  background-position: 100px 50%;
+  width: 125px;
+  margin-right: 5px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .selects .city select {
+  width: 142px;
+  border: none;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .selects .dist {
+  background-position: 150px 50%;
+  width: 178px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .selects .dist select {
+  width: 195px;
+  border: none;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .address {
+  margin-top: 10px;
+  padding-left: 59px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .address input {
+  width: 299px;
+}
+.lightbox .wrapper .container .part .form-block form .select-group .error {
+  margin-top: 5px;
+}
+.lightbox .wrapper .container .part .btn-change-block {
+  text-align: right;
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.lightbox .wrapper .container .part .btn-change-block .btn a {
+  color: white;
+  text-align: center;
+  line-height: 88px;
+  display: inline-block;
+}
