@@ -23,6 +23,7 @@
         "gulp-dom-src": "*",
         "gulp-cheerio": "*",
         "gulp-clean": "*",
+        "run-sequence": "*",
         "path": "*"
     }
 }

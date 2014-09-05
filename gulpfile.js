@@ -22,7 +22,7 @@ var filesize = require('gulp-filesize');
 var domSrc = require('gulp-dom-src');
 var cheerio = require('gulp-cheerio');
 var clean = require('gulp-clean');
-
+var runSequence = require('run-sequence');
 
 var filefolder = {
     'img': 'img/**/*',
@@ -106,10 +106,6 @@ gulp.task('browser-sync', function() {
 
 gulp.task('concat-js', function() {
 
-    gulp.src('dist/js/**/*', {
-        read: false
-    }).pipe(clean());
-
     return domSrc({
         file: indexPath,
         selector: 'script',
@@ -124,13 +120,9 @@ gulp.task('concat-js', function() {
 
 gulp.task('concat-css', function() {
 
-    gulp.src('dist/css/**/*', {
-        read: false
-    }).pipe(clean());
-
     return domSrc({
         file: indexPath,
-        selector: 'link',
+        selector: 'link[rel="stylesheet"]',
         attribute: 'href'
     })
         .pipe(concat('dist.css'))
@@ -145,10 +137,6 @@ gulp.task('concat-css', function() {
 
 gulp.task('minify-js', function() {
 
-    gulp.src('dist/js/**/*', {
-        read: false
-    }).pipe(clean());
-
     return domSrc({
         file: indexPath,
         selector: 'script',
@@ -162,17 +150,13 @@ gulp.task('minify-js', function() {
 
 gulp.task('minify-css', function() {
 
-    gulp.src('dist/css/**/*', {
-        read: false
-    }).pipe(clean());
-
     return gulp.src('dist/css/**/*', {
         read: false
     })
         .pipe(clean())
         .domSrc({
             file: indexPath,
-            selector: 'link',
+            selector: 'link[rel="stylesheet"]',
             attribute: 'href'
         })
         .pipe(minifyCSS({
@@ -184,10 +168,6 @@ gulp.task('minify-css', function() {
 });
 
 gulp.task('minify-html', function() {
-
-    gulp.src('dist/html/**/*', {
-        read: false
-    }).pipe(clean());
 
     return gulp.src(indexPath)
         .pipe(cheerio(function($) {
@@ -206,10 +186,6 @@ gulp.task('minify-html', function() {
 });
 
 gulp.task('move-html', function() {
-
-    gulp.src('dist/html/**/*', {
-        read: false
-    }).pipe(clean());
 
     return gulp.src(indexPath)
         .pipe(cheerio(function($) {
@@ -243,10 +219,32 @@ gulp.task('minify-img', function() {
         .on('error', gutil.log);
 });
 
+gulp.task('clean', function() {
+    return gulp.src(['dist/html', 'dist/js', 'dist/css'], {
+        read: false
+    }).pipe(clean({force: true}));
+});
+
+gulp.task('clean-img', function() {
+    return gulp.src(['dist/img'], {
+        read: false
+    }).pipe(clean({force: true}));
+});
+gulp.task('clean-all', ['clean', 'clean-img']);
+
+
 gulp.task('sass', ['compass']);
 gulp.task('default', ['sass']);
 gulp.task('livereload', ['browser-sync', 'default']);
-gulp.task('dist', ['concat-js', 'concat-css', 'move-html']);
-gulp.task('dist-noncon', ['minify-js', 'minify-css', 'move-html']);
-gulp.task('dist-img', ['dist', 'minify-img']);
-gulp.task('dist-noncon-img', ['dist-noncon', 'minify-img']);
+gulp.task('dist', function(cb) {
+    runSequence('clean', ['concat-js', 'concat-css', 'move-html']);
+});
+gulp.task('dist-noncon', function(cb) {
+    runSequence('clean', ['minify-js', 'minify-css', 'move-html']);
+});
+gulp.task('dist-img', function(cb) {
+    runSequence('clean-all', ['dist', 'minify-img']);
+});
+gulp.task('dist-noncon-img', function(cb) {
+    runSequence('clean-all', ['dist-noncon', 'minify-img']);
+});
